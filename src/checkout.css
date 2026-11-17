@@ -1,0 +1,652 @@
+/* ---------- Página de pagamento (/assinar) ---------- */
+
+.co {
+  position: relative;
+  min-height: 100svh;
+  padding-bottom: 72px;
+  overflow: hidden;
+  background:
+    radial-gradient(90% 45% at 50% 0%, rgba(22, 163, 74, 0.22), transparent 70%),
+    var(--dark);
+  color: #fff;
+}
+
+.co-glow {
+  position: absolute;
+  top: 380px;
+  right: -220px;
+  width: 520px;
+  height: 520px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(134, 239, 172, 0.14), transparent 65%);
+  pointer-events: none;
+}
+
+/* Topo: voltar, logo e o selo de pagamento seguro */
+.co-top {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 18px var(--gutter);
+}
+
+.co-back {
+  display: inline-flex;
+  justify-self: start;
+  align-items: center;
+  gap: 6px;
+  height: 40px;
+  padding: 0 14px 0 10px;
+  border: 1px solid var(--dark-line);
+  border-radius: 99px;
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+  font-size: 14px;
+  transition: background 0.2s;
+}
+
+.co-back:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.co-secure {
+  display: inline-flex;
+  justify-self: end;
+  align-items: center;
+  gap: 6px;
+  font-size: 12.5px;
+  color: var(--dark-text-2);
+}
+
+.co-secure svg {
+  color: var(--dark-pos);
+}
+
+@media (max-width: 479px) {
+  .co-back {
+    justify-content: center;
+    width: 40px;
+    padding: 0;
+  }
+
+  .co-back span,
+  .co-secure span {
+    display: none;
+  }
+}
+
+.co-main {
+  position: relative;
+  z-index: 1;
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 4px var(--gutter) 0;
+}
+
+.co-layout {
+  display: grid;
+  gap: 16px;
+}
+
+/* No computador: resumo à esquerda, parado na tela, e o formulário à direita */
+@media (min-width: 900px) {
+  .co-layout {
+    grid-template-columns: 380px 1fr;
+    align-items: start;
+    gap: 28px;
+    padding-top: 16px;
+  }
+
+  .co-summary {
+    position: sticky;
+    top: 24px;
+  }
+}
+
+.co-narrow {
+  max-width: 460px;
+  margin: 12px auto 0;
+}
+
+/* ---------- Resumo do plano ---------- */
+
+.co-summary {
+  padding: 18px;
+  border: 1px solid var(--dark-line);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.co-switch {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+  padding: 4px;
+  border-radius: 99px;
+  background: rgba(0, 0, 0, 0.22);
+}
+
+.co-switch button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 38px;
+  border: 0;
+  border-radius: 99px;
+  background: transparent;
+  color: var(--dark-text-2);
+  font: 600 14px var(--font-body);
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    color 0.2s;
+}
+
+.co-switch button.is-on {
+  background: #fff;
+  color: var(--text);
+}
+
+.co-plan {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 16px;
+}
+
+.co-plan img {
+  flex: none;
+  width: 76px;
+  height: auto;
+  filter: drop-shadow(0 0 14px rgba(134, 239, 172, 0.25));
+}
+
+.co-plan strong {
+  display: block;
+  font: 600 22px/1.15 var(--font-display);
+  letter-spacing: -0.03em;
+}
+
+.co-plan-tag {
+  display: inline-block;
+  margin-bottom: 5px;
+  padding: 3px 9px;
+  border-radius: 99px;
+  background: rgba(134, 239, 172, 0.14);
+  color: var(--dark-pos);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+
+
+
+
+.co-price {
+  display: flex;
+  flex-direction: column;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--dark-line);
+}
+
+.co-price-big {
+  font: 600 30px/1.1 var(--font-display);
+  letter-spacing: -0.035em;
+}
+
+.co-price-small {
+  margin-top: 4px;
+  font-size: 13.5px;
+  color: var(--dark-text-2);
+}
+
+.co-lines {
+  display: grid;
+  gap: 8px;
+  margin: 16px 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.86);
+}
+
+.co-lines li {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+}
+
+.co-lines svg {
+  flex: none;
+  margin-top: 3px;
+  color: var(--dark-pos);
+}
+
+.co-trial {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 16px;
+  padding: 10px 12px;
+  border: 1px dashed rgba(134, 239, 172, 0.35);
+  border-radius: 14px;
+  font-size: 13px;
+  color: var(--dark-text-2);
+  text-align: left;
+}
+
+.co-trial svg {
+  flex: none;
+  color: var(--dark-pos);
+}
+
+.co-trial span {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.3;
+}
+
+.co-trial strong {
+  font-weight: 600;
+  color: #fff;
+}
+
+.co-trial--light {
+  border-color: rgba(21, 128, 61, 0.35);
+  color: var(--muted);
+}
+
+.co-trial--light strong {
+  color: var(--text);
+}
+
+.co-trial--light svg {
+  color: var(--green);
+}
+
+/* ---------- Cartão branco do formulário ---------- */
+
+.co-card {
+  position: relative;
+  padding: 22px 18px 20px;
+  overflow: hidden;
+  border-radius: 24px;
+  background: #fff;
+  color: var(--text);
+  box-shadow: 0 40px 80px -30px rgba(0, 0, 0, 0.55);
+}
+
+.co-card::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto;
+  height: 3px;
+  background: linear-gradient(90deg, #16a34a, #86efac);
+}
+
+@media (min-width: 600px) {
+  .co-card {
+    padding: 28px 28px 24px;
+  }
+}
+
+.co-section + .co-section {
+  margin-top: 24px;
+  padding-top: 22px;
+  border-top: 1px solid var(--line);
+}
+
+.co-section h2 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 14px;
+  font: 600 18px var(--font-display);
+  letter-spacing: -0.02em;
+}
+
+.co-step {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--green-tint);
+  color: var(--green);
+  font: 600 13px var(--font-mono);
+}
+
+.co-grid2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.co-span2 {
+  grid-column: 1 / -1;
+}
+
+.co-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.co-field label {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* 16px no campo para o iPhone não dar zoom ao tocar */
+.co-field input,
+.co-field select {
+  width: 100%;
+  height: 48px;
+  padding: 0 14px;
+  border: 1.5px solid var(--line-strong);
+  border-radius: 12px;
+  background: #fff;
+  color: var(--text);
+  font: 400 16px var(--font-body);
+  outline: none;
+  transition:
+    border-color 0.15s,
+    box-shadow 0.15s;
+}
+
+.co-field select {
+  padding-right: 40px;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2366706b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  cursor: pointer;
+}
+
+.co-field input::placeholder {
+  color: var(--faint);
+}
+
+.co-field input:focus,
+.co-field select:focus {
+  border-color: var(--green);
+  box-shadow: 0 0 0 4px rgba(21, 128, 61, 0.12);
+}
+
+.co-field input[aria-invalid] {
+  border-color: var(--neg);
+}
+
+.co-field input[aria-invalid]:focus {
+  box-shadow: 0 0 0 4px rgba(220, 38, 38, 0.12);
+}
+
+.co-error,
+.co-hint {
+  font-size: 12.5px;
+  line-height: 1.35;
+}
+
+.co-error {
+  color: var(--neg);
+}
+
+.co-hint {
+  color: var(--muted);
+}
+
+.co-methods {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.co-methods button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  min-height: 62px;
+  padding: 10px 8px;
+  border: 1.5px solid var(--line-strong);
+  border-radius: 14px;
+  background: #fff;
+  color: var(--text);
+  font: 600 15px var(--font-body);
+  cursor: pointer;
+  transition:
+    border-color 0.15s,
+    background 0.15s,
+    color 0.15s;
+}
+
+.co-methods button.is-on {
+  border-color: var(--green);
+  background: var(--green-tint);
+  color: var(--green);
+}
+
+.co-method-name {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.co-methods small {
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--muted);
+}
+
+.co-methods button.is-on small {
+  color: var(--green);
+}
+
+.co-pix-info {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px;
+  border-radius: 14px;
+  background: var(--green-tint);
+}
+
+.co-pix-info svg {
+  flex: none;
+  color: var(--green);
+}
+
+.co-pix-info p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.co-total {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-top: 22px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+}
+
+.co-total span {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.co-total strong {
+  font: 600 22px var(--font-display);
+  letter-spacing: -0.03em;
+}
+
+.co-total small {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--muted);
+}
+
+.co-alert {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 14px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: #fef2f2;
+  color: #991b1b;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.co-alert svg {
+  flex: none;
+  margin-top: 1px;
+}
+
+.co-submit {
+  height: 54px;
+  margin-top: 16px;
+  font-size: 16px;
+}
+
+.co-submit:disabled {
+  opacity: 0.75;
+  cursor: progress;
+}
+
+.co-wait-note {
+  margin: 10px 0 0;
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--green);
+  text-align: center;
+}
+
+.co-safe {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 7px;
+  margin: 14px 0 0;
+  font-size: 12.5px;
+  line-height: 1.4;
+  color: var(--muted);
+  text-align: center;
+}
+
+.co-safe svg {
+  flex: none;
+  margin-top: 1px;
+  color: var(--green);
+}
+
+.co-spin {
+  animation: co-spin 0.8s linear infinite;
+}
+
+@keyframes co-spin {
+  to {
+    rotate: 360deg;
+  }
+}
+
+/* ---------- Pix e confirmação ---------- */
+
+.co-card--center {
+  text-align: center;
+}
+
+.co-card--center h1 {
+  margin: 12px 0 0;
+  font: 600 clamp(24px, 6vw, 28px) / 1.15 var(--font-display);
+  letter-spacing: -0.03em;
+}
+
+.co-lead {
+  max-width: 34ch;
+  margin: 8px auto 0;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--muted);
+  text-wrap: pretty;
+}
+
+.co-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: 99px;
+  background: var(--green-tint);
+  color: var(--green);
+  font-size: 12.5px;
+  font-weight: 600;
+}
+
+.co-qr {
+  width: 236px;
+  margin: 20px auto 16px;
+  padding: 8px;
+  border: 1.5px solid var(--line);
+  border-radius: 18px;
+}
+
+.co-qr img {
+  display: block;
+  width: 100%;
+  height: auto;
+  image-rendering: pixelated;
+}
+
+.co-copy {
+  height: 50px;
+}
+
+.co-waiting {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 16px;
+  font-size: 13.5px;
+  line-height: 1.4;
+  color: var(--muted);
+}
+
+.co-waiting svg {
+  flex: none;
+  color: var(--green);
+}
+
+.co-test-hint {
+  margin: 14px 0 0;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: #fffbeb;
+  color: #92400e;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.co-paid-art {
+  display: block;
+  width: 150px;
+  height: auto;
+  margin: 0 auto 14px;
+  filter: drop-shadow(0 12px 18px rgba(12, 51, 38, 0.25));
+}
+
+.co-card--paid .co-trial {
+  margin: 18px 0;
+}

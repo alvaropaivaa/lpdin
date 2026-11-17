@@ -1,0 +1,10 @@
+node_modules
+dist
+dist-teste
+
+# Chaves do Asaas e outros segredos: nunca vão para o repositório
+.env*.local
+.env
+
+# Cópia salva do site usado como referência (é de outra empresa, não faz parte do projeto)
+Meu_Assessor___Assessores_de_IA_no_WhatsApp*.html
